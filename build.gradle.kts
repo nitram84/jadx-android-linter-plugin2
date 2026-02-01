@@ -6,36 +6,37 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
 	`java-library`
 
-	id("com.github.johnrengelman.shadow") version "8.1.1"
+	id("com.gradleup.shadow") version "9.3.1"
 	id("com.diffplug.spotless") version "6.25.0"
 
 	// auto update dependencies with 'useLatestVersions' task
-	id("se.patrikerdes.use-latest-versions") version "0.2.18"
-	id("com.github.ben-manes.versions") version "0.51.0"
+	id("se.patrikerdes.use-latest-versions") version "0.2.19"
+	id("com.github.ben-manes.versions") version "0.53.0"
 }
 
 dependencies {
 	// use compile only scope to exclude jadx-core and its dependencies from result jar
-	compileOnly("io.github.skylot:jadx-core:1.5.1")
-	compileOnly("io.github.skylot:jadx-app-commons:1.5.1")
-	compileOnly("com.google.code.gson:gson:2.11.0")
-	compileOnly("commons-io:commons-io:2.18.0")
-	compileOnly("ch.qos.logback:logback-classic:1.5.12")
+	compileOnly("io.github.skylot:jadx-core:1.5.3")
+	compileOnly("io.github.skylot:jadx-app-commons:1.5.3")
+	compileOnly("com.google.code.gson:gson:2.13.2")
+	compileOnly("commons-io:commons-io:2.21.0")
+	compileOnly("ch.qos.logback:logback-classic:1.5.22")
 
-	testImplementation("io.github.skylot:jadx-core:1.5.1")
-	testImplementation("io.github.skylot:jadx-app-commons:1.5.1")
-	testImplementation("com.google.code.gson:gson:2.11.0")
-	testImplementation("ch.qos.logback:logback-classic:1.5.12")
-	testImplementation("org.apache.commons:commons-lang3:3.17.0")
+	testImplementation("io.github.skylot:jadx-core:1.5.3")
+	testImplementation("io.github.skylot:jadx-app-commons:1.5.3")
+	testImplementation("com.google.code.gson:gson:2.13.2")
+	testImplementation("ch.qos.logback:logback-classic:1.5.22")
+	testImplementation("org.apache.commons:commons-lang3:3.20.0")
 	testImplementation("jakarta.xml.bind:jakarta.xml.bind-api:4.0.2")
-	testImplementation("org.ow2.asm:asm:9.7.1")
+	testImplementation("org.ow2.asm:asm:9.9.1")
 	testRuntimeOnly("com.sun.xml.bind:jaxb-impl:4.0.5")
 
-	testImplementation("io.github.skylot:jadx-smali-input:1.5.1")
+	testImplementation("io.github.skylot:jadx-smali-input:1.5.3")
 
-	testImplementation("org.assertj:assertj-core:3.26.3")
-	testImplementation("org.junit.jupiter:junit-jupiter-api:5.11.3")
-	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.11.3")
+	testImplementation("org.assertj:assertj-core:3.27.7")
+	testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.2")
+	testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:6.0.2")
+	testRuntimeOnly("org.junit.platform:junit-platform-launcher:6.0.2")
 }
 
 allprojects {
@@ -71,13 +72,12 @@ fun FormatExtension.commonFormatOptions() {
 repositories {
 	mavenLocal()
 	mavenCentral()
-	maven(url = "https://s01.oss.sonatype.org/content/repositories/snapshots/")
 	google()
 }
 
 java {
-	sourceCompatibility = JavaVersion.VERSION_11
-	targetCompatibility = JavaVersion.VERSION_11
+	sourceCompatibility = JavaVersion.VERSION_17
+	targetCompatibility = JavaVersion.VERSION_17
 }
 
 version = System.getenv("VERSION") ?: "dev"

@@ -26,7 +26,7 @@ Example:
 
 ### Build from source
 
-JDK 11 or higher must be installed.
+JDK 17 or higher must be installed.
 
 ```bash
 git clone https://github.com/jadx-decompiler/jadx-android-linter-plugin.git
